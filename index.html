@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Student App</title>
+ <!-- <script defer src="https://peer-instructions-server.herokuapp.com/socket.io/socket.io.js"></script>-->
+ <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
+ <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script defer src="js/main.js"></script>
+ <script defer src="js/script.js"></script>
+ 
+ <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body id="bg-img">
+  <header>
+      <div class="menu-btn">
+        <div class="btn-line"></div>
+        <div class="btn-line"></div>
+        <div class="btn-line"></div>
+      </div>
+  
+      <nav class="menu">
+        <ul class="menu-nav">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link current">
+              Dozentenapp
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">
+              Studentenapp
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a href="work.html" class="nav-link">
+              Lecteur App
+            </a>
+          </li>
+          <li class="nav-item current ">
+            <a href="Interests.html" class="nav-link">
+              Student App
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">
+              Contact
+            </a>
+          </li>
+        </ul>
+        <div class="menu-branding">
+          <div class="portrait"></div>           
+        </div>
+        
+      </nav>
+    </header>
+  
+  
+  
+  <div class="flex-container">
+      <div class="col col1">
+        <h1>Current Workshop Phase</h1>
+          <div class="contentcol1">
+              <h1 class="lg-heading"><span class="text-secondary"></span></h1>
+              <div class="OrderContainer">
+                <h2 class="phaseHeader">Phase:</h2>
+                    <div class="concretOrderContainer">
+                      <h3 id="CurrentPhase">Lecteuring</h1>
+                    </div>
+              </div>
+          </div>
+         
+
+    
+
+      </div>
+
+      <div class="col col2 ">
+        <div class="Questions">
+          <h1 id="ÜberschriftFrage">Hier können Sie bald Fragen beantworten!</h1>
+          
+          <div id="Fragenblock" class="questionContainer" style="visibility: hidden;">
+         
+          
+          
+          
+          <div>
+            <p id="Frageausgewählt"  class="markAnswer"></p>
+            <span id="PlaceholderFrage">Frage</span>
+            <div>
+              <div class="answerPoss">
+                <label class="leftyAnswer">
+                  <input type="radio"  name="Antwortmöglichkeiten" value="1">
+                  <span id="PlaceholderAntwort1" class="">Option 1</span>
+                </label>
+             
+             
+                <label class="leftyAnswer" >
+                  <input type="radio" name="Antwortmöglichkeiten" value="2">
+                  <span  id="PlaceholderAntwort2" class="">Option 2</span>
+                </label>
+             
+                <label class="leftyAnswer" >
+                  <input type="radio" name="Antwortmöglichkeiten" value="3">
+                  <span id="PlaceholderAntwort3" class="">Option 3</span>
+                </label>
+            
+                <label class="leftyAnswer">
+                  <input type="radio"  name="Antwortmöglichkeiten" value="4">
+                  <span id="PlaceholderAntwort4">Option 4</span>
+                </label>
+              </div>
+  
+              <button id="btnSendAnswer" class="button button1">
+                Antwort Bestätigen
+              </button>
+            </div>
+          </div>
+        </div>
+
+          <div class="ChartContainer">  
+            <h1 style="visibility: hidden;" id="StatstikEinsehen">Hier können Sie die Statsitiken der Gruppe sehen.</h1>
+            <canvas id="myChart">Durchschnitts-Performance</canvas>  
+          </div>
+            
+          
+        </div>
+          
+
+        
+
+          <div id="ChartContainer" class="ChartContainer">
+              <canvas style="visibility: hidden;" id="myChart">Durchschnitts-Performance</canvas>
+          </div>
+
+          
+
+      </div>
+
+      <div class="col col3">
+      
+          <div id="message-container" class="messageContainer">
+            <h1>Chat:</h1>
+
+          </div>
+
+          <div class="sendFormContainer">
+              <form class="send-container" id="send-container" class="send-container">
+                  <input  type="text" id="message-input" class="text-input" placeholder="Your Message">
+                  <button type="submit" class="send-button"id="send-button">Send</button>
+              </form>
+        </div>
+      </div>
+  </div>
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script defer src="js/performance.js"></script>
+</html>

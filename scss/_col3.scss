@@ -1,0 +1,130 @@
+.messageContainer{
+    display: flex;
+    flex-direction: column;
+    height:90%;
+    overflow-y: auto;
+    margin-top:40px;
+    
+    background: rgba(darken($primary-color, 15), 0.2);
+    border-radius: 12px;
+  }
+  
+  
+  .OuterMessageLeft{
+    opacity: 1;
+    align-self: flex-start;
+    margin: 5px;
+    max-width: 33%;
+    overflow-wrap: break-word;
+    text-align: left;
+    height: auto;
+    background-color: green;
+    padding: 10px;
+    border-radius: 12px;
+    border: 3px darkgreen solid;
+  }
+  
+  .OuterMessageRight{
+    align-self: flex-end;
+    margin: 5px;
+    max-width: 33%;
+    overflow-wrap: break-word;
+    text-align: left;
+    height: auto;
+    background-color: green;
+    padding: 10px;
+    border-radius: 12px;
+    border: 3px darkgreen solid;
+  }
+  
+  
+  .OuterMessageMiddleRight{
+    align-self: center;
+    margin: 5px;
+    max-width:50%;
+    overflow-wrap: break-word;
+    text-align: center;
+    height: auto;
+    background-color: green;
+    padding: 5px;
+    border-radius: 12px;
+    border: 3px darkgreen solid;
+    
+    .text-chatName{
+      color:black;
+      font-size: smaller;
+      
+    }
+  
+    .text-ChatMessage{
+      color:white;
+      font-style: italic;
+      font-size:small;
+      
+    }
+  }
+  
+  .OuterMessageMiddleFalse{
+    align-self: center;
+    margin: 5px;
+    max-width: 50%;
+    overflow-wrap: break-word;
+    text-align: center;
+    height: auto;
+    background-color: red;
+    padding: 5px;
+    border-radius: 12px;
+    border: 3px darkred solid;
+    
+    .text-chatName{
+      color:black;
+      font-size: smaller;
+      
+    }
+  
+    .text-ChatMessage{
+      color:white;
+      font-style: italic;
+      font-size:small;
+      
+    }
+  }
+  
+  .text-ChatMessage{
+    color:white;
+    font-style: italic;
+    font-size:medium;
+    
+  }
+  
+  .text-chatName{
+    color:black;
+    font-size: larger;
+    
+  }
+  
+  .sendFormContainer{
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .send-button{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: larger;
+  }
+  
+  .send-container{
+    width: 100%;
+  }
+  .text-input{
+    padding: 16px 32px;
+    width: 80%;
+  
+  }
