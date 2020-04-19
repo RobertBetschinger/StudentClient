@@ -1,5 +1,5 @@
-const socket = io('https://peer-instructions-server.herokuapp.com')
-//const socket = io('http://localhost:5000')
+//const socket = io('https://peer-instructions-server.herokuapp.com')
+const socket = io('http://localhost:5000')
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
@@ -56,6 +56,7 @@ messageForm.addEventListener('submit', e => {
     appendMessage('You: ', message,true)
     socket.emit('send-chat-message', message)
     messageInput.value = ''
+    $("#message-input").data("emojioneArea").setText('');
   })
 
   function appendMessage(name,message,position) {

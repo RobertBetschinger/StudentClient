@@ -159,7 +159,7 @@ h3 {
 .messageContainer {
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: 86%;
   overflow-y: auto;
   margin-top: 40px;
   background: rgba(30, 30, 30, 0.2);
@@ -245,6 +245,8 @@ h3 {
 
 .send-button {
   background-color: #4CAF50;
+  margin-top: 10px;
+  width: 100%;
   border: none;
   color: white;
   padding: 16px 32px;

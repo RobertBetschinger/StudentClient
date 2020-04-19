@@ -1,7 +1,7 @@
 .messageContainer{
     display: flex;
     flex-direction: column;
-    height:90%;
+    height:86%;
     overflow-y: auto;
     margin-top:40px;
     
@@ -112,6 +112,8 @@
   
   .send-button{
     background-color: #4CAF50;
+    margin-top: 10px;
+    width: 100%;
     border: none;
     color: white;
     padding: 16px 32px;
