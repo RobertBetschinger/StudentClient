@@ -1,26 +1,26 @@
-.ChartContainer{
+.ChartContainer {
     margin-top: 1rem;
 }
 
-.questionContainer{
+.questionContainer {
     background: rgba(darken($primary-color, 15), 0.2);
     display: flex;
     flex-direction: column;
 }
 
-.markAnswer{
-    margin:2rem;
+.markAnswer {
+    margin: 2rem;
     font-size: larger;
-    color:white;
+    color: white;
     text-align: center;
 }
 
-#Fragenblock{
+#Fragenblock {
     margin: 0.5rem;
     background-color: green;
 }
 
-#PlaceholderFrage{
+#PlaceholderFrage {
     font-size: x-large;
     color: white;
     text-align: left;
@@ -28,7 +28,7 @@
 }
 
 
-.answerPoss{
+.answerPoss {
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -36,9 +36,9 @@
     text-align: left;
 }
 
-.leftyAnswer{
-   width: auto;
-     margin: 10px;
+.leftyAnswer {
+    width: auto;
+    margin: 10px;
     justify-content: left;
     font-size: large;
 }
@@ -51,18 +51,19 @@
     padding: 15px 32px;
     margin-top: 20px;
     margin-bottom: 2rem;
-    transition: all 0.5s ease-out; 
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition: all 0.5s ease-out;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: dodgerblue;
     border: none;
 }
 
-.button:hover{
-  padding: 0.5rem 1.5rem;
-  background:rgb(0, 106, 211);
-  color:white; 
-  border-color: black;    
+.button:hover {
+    padding: 0.5rem 1.5rem;
+    background: rgb(0, 106, 211);
+    color: white;
+    border-color: black;
 }
-.button1{
-  border-radius: 12px;
+
+.button1 {
+    border-radius: 12px;
 }

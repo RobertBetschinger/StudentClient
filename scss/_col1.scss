@@ -1,28 +1,29 @@
-.OrderContainer{
+.OrderContainer {
     background: rgba(darken($primary-color, 15), 0.2);
     height: 16vh;
 }
-.concretOrderContainer{
-    margin:2rem;
+
+.concretOrderContainer {
+    margin: 2rem;
     margin-bottom: 2rem;
     background-color: darkgrey;
 }
 
-h3{
-    color:black;
+h3 {
+    color: black;
     padding: 1rem;
     font-size: x-large;
 }
 
 
-.phaseHeader{
+.phaseHeader {
     color: white;
 
 }
 
-.contentcol1{
-display: flex;
-flex-direction: column;
-justify-content: center;
-height: 80vh;
+.contentcol1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
 }
