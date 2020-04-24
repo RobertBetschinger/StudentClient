@@ -1,5 +1,5 @@
-const socket = io("https://peer-instructions-server.herokuapp.com");
-//const socket = io('http://localhost:5000')
+//const socket = io("https://peer-instructions-server.herokuapp.com");
+const socket = io('http://localhost:5000')
 const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
@@ -37,11 +37,13 @@ socket.on("NewQuestion", (question) => {
   showStatistics(false);
 });
 
-socket.on("showStatistics", (data) => {
+socket.on("showStatistics", (question,data) => {
   console.log("Statistics arrived");
-  adddata(data);
+  adddata(data)
+  changeLabels(question)
   showStatistics(true);
 });
+
 
 socket.on("newPhase", (message) => {
   console.log("New Phase");

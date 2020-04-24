@@ -8,6 +8,15 @@ Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 Chart.defaults.global.defaultFontColor = "#777";
 
+function changeLabels(question) {
+  AntwortChart.data.labels[0] = question.antwort1;
+  AntwortChart.data.labels[1] = question.antwort2;
+  AntwortChart.data.labels[2] = question.antwort3;
+  AntwortChart.data.labels[3] = question.antwort4;
+  AntwortChart.update();
+
+}
+
 let AntwortChart = new Chart(myChart, {
   type: "horizontalBar",
   data: {
