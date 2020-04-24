@@ -114,6 +114,8 @@ function showNewQuestion(show) {
     ÜberschriftFrage.innerHTML = "Pls answer the question";
     Fragenblock.style.visibility = "visible";
     btnAnswerQuestion.disabled = false;
+    document.getElementById("btnSendAnswer").style.cursor = "pointer";
+    document.getElementById("btnSendAnswer").style.opacity = "1";
     Frageausgewählt.innerHTML = "";
     unmarkAllAnswers();
   }
@@ -143,6 +145,9 @@ function markSelectedAnswer(radioValueSelected) {
     PlaceholderAntwort4.style.backgroundColor = "blue";
   }
   btnAnswerQuestion.disabled = true;
+  document.getElementById("btnSendAnswer").style.cursor = "not-allowed";
+  document.getElementById("btnSendAnswer").style.opacity = "0.6";
+
 }
 
 btnAnswerQuestion.addEventListener("click", function () {
