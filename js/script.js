@@ -1,5 +1,5 @@
 //const socket = io("https://peer-instructions-server.herokuapp.com");
-const socket = io('http://localhost:5000')
+const socket = io("http://localhost:5000");
 const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
@@ -37,13 +37,40 @@ socket.on("NewQuestion", (question) => {
   showStatistics(false);
 });
 
-socket.on("showStatistics", (question,data) => {
-  console.log("Statistics arrived");
-  adddata(data)
-  changeLabels(question)
-  showStatistics(true);
+socket.on("Group-Changed", (users) => {
+  console.log(users);
+  fillInDataInDropdown(users);
 });
 
+const selectNames = document.getElementById("namesSelect");
+function fillInDataInDropdown(users) {
+  console.log("Update Group List");
+  $("#namesSelect").find("option").remove().end();
+  var GroupChat = document.createElement("option");
+  GroupChat.label = "Gruppenchat";
+  GroupChat.value = "group";
+  GroupChat.text = "Gruppenchat";
+  selectNames.appendChild(GroupChat);
+  for (var j = 0; j < users.length; j++) {
+    var ellsub = document.createElement("option");
+    ellsub.label = users[j].userName;
+    ellsub.value = users[j].id;
+    ellsub.text = users[j].userName;
+    selectNames.appendChild(ellsub);
+  }
+}
+
+function loadSelectedChatRoom() {
+  value = $("select#namesSelect option:checked").val();
+  return value;
+}
+
+socket.on("showStatistics", (question, data) => {
+  console.log("Statistics arrived");
+  adddata(data);
+  changeLabels(question);
+  showStatistics(true);
+});
 
 socket.on("newPhase", (message) => {
   console.log("New Phase");
@@ -53,19 +80,96 @@ socket.on("newPhase", (message) => {
   changePhase(message);
 });
 
+
+socket.on("private-message", (privMessageObj) => {
+  appendMessagePrivateOthers(privMessageObj.name, privMessageObj.message);
+});
+
 //Chat
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  let selectedRoom = loadSelectedChatRoom();
+  partnerName = $("option:selected", selectNames).text();
   const message = messageInput.value;
-  appendMessage("You: ", message, true);
-  socket.emit("send-chat-message", message);
-  messageInput.value = "";
-  $("#message-input").data("emojioneArea").setText("");
+  //Buiild in Must Chat
+  if (message == "") {
+    alert("Bitte geben Sie eine Nachricht in das Textfeld ein!");
+    return;
+  }
+
+  if (selectedRoom === "group") {
+    appendMessage("You: ", message, true);
+    socket.emit("send-chat-message", message);
+    messageInput.value = "";
+    $("#message-input").data("emojioneArea").setText("");
+  } else {
+    const data = {
+      message: message,
+      id: selectedRoom,
+    };
+    socket.emit("Private-Message", data,(answer)=>{
+      if(answer){
+        alert("Pls dont send messages at yourself")
+      }
+      else{
+        appendMessagePrivate("You: ", message, partnerName);
+        messageInput.value = "";
+        $("#message-input").data("emojioneArea").setText("");
+      }
+    });
+
+  }
 });
+
+function appendMessagePrivateOthers(name, message) {
+  const messageElement = document.createElement("div");
+
+  var html = [
+    '<p class="text-ChatMessage"><span class="text-priv">' +
+      "This is a private message from: " +
+      name +
+      "</span>" +
+      '<p class="text-ChatMessage"><span class="text-chatName">' +
+      name +
+      ": " +
+      "</span>" +
+      message +
+      "</p>",
+  ].join("\n");
+  messageElement.innerHTML = html;
+
+  messageElement.classList.add("OuterMessageRight");
+
+  messageContainer.append(messageElement);
+}
+
+
+function appendMessagePrivate(name, message, partnerName) {
+  const messageElement = document.createElement("div");
+
+  var html = [
+    '<p class="text-ChatMessage"><span class="text-priv">' +
+      "This is a private message to: " +
+      partnerName +
+      "</span>" +
+      '<p class="text-ChatMessage"><span class="text-chatName">' +
+      name +
+      "</span>" +
+      message +
+      "</p>",
+  ].join("\n");
+  messageElement.innerHTML = html;
+
+  messageElement.classList.add("OuterMessageLeft");
+
+  messageContainer.append(messageElement);
+}
+
+
 
 function appendMessage(name, message, position) {
   const messageElement = document.createElement("div");
-  messageElement.innerHTML = name;
+
   var html = [
     '<p class="text-ChatMessage"><span class="text-chatName">' +
       name +
@@ -130,8 +234,7 @@ function unmarkAllAnswers() {
 
 function markSelectedAnswer(radioValueSelected) {
   ÜberschriftFrage.innerHTML = "Soon you can answer an other question";
-  Frageausgewählt.innerHTML =
-    "You had just selected the blue marked answer";
+  Frageausgewählt.innerHTML = "You had just selected the blue marked answer";
   if (radioValueSelected == 1) {
     PlaceholderAntwort1.style.backgroundColor = "blue";
   }
@@ -147,7 +250,6 @@ function markSelectedAnswer(radioValueSelected) {
   btnAnswerQuestion.disabled = true;
   document.getElementById("btnSendAnswer").style.cursor = "not-allowed";
   document.getElementById("btnSendAnswer").style.opacity = "0.6";
-
 }
 
 btnAnswerQuestion.addEventListener("click", function () {
