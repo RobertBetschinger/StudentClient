@@ -14,7 +14,6 @@ function changeLabels(question) {
   AntwortChart.data.labels[2] = question.antwort3;
   AntwortChart.data.labels[3] = question.antwort4;
   AntwortChart.update();
-
 }
 
 let AntwortChart = new Chart(myChart, {

@@ -42,54 +42,60 @@ socket.on("Group-Changed", (users) => {
   fillInDataInDropdown(users);
 });
 
-socket.on("DiscussionTime", (value) =>{
-  init(value)
-})
+socket.on("DiscussionTime", (value) => {
+  init(value);
+});
 
 function init(minutes) {
-	console.log('init');
-	var time_in_minutes = minutes;
-  start_countdown('div_clock', time_in_minutes);
-
+  console.log("init");
+  var time_in_minutes = minutes;
+  start_countdown("div_clock", time_in_minutes);
 }
 
 function start_countdown(clockid, time_in_minutes) {
-	console.log("start_countdown");
-	//start the countdown
-	var current_time = Date.parse(new Date());
-	var deadline = new Date(current_time + time_in_minutes * 60 * 1000);
-	run_clock(clockid, deadline);
+  console.log("start_countdown");
+  //start the countdown
+  var current_time = Date.parse(new Date());
+  var deadline = new Date(current_time + time_in_minutes * 60 * 1000);
+  run_clock(clockid, deadline);
 }
 
-
-var timeinterval
+var timeinterval;
 function run_clock(id, endtime) {
-	console.log("run_clock");
+  console.log("run_clock");
   var clock = document.getElementById(id);
-  
-  
-  
+
   function update_clock() {
-		var t = time_remaining(endtime);
-		clock.innerHTML = ((t.minutes).toString()).padStart(2, '0') + ':' + ((t.seconds).toString()).padStart(2, '0') + ' left';
-		if (t.total <= 0) {
-			alert("Zeit abgelaufen")
-      clearInterval(timeinterval);		
-		}
+    var t = time_remaining(endtime);
+    clock.innerHTML =
+      t.minutes.toString().padStart(2, "0") +
+      ":" +
+      t.seconds.toString().padStart(2, "0") +
+      " left";
+    if (t.total <= 0) {
+      alert("Zeit abgelaufen");
+      clearInterval(timeinterval);
+    }
   }
-  clearInterval(timeinterval)
-	update_clock(); // run function once at first to avoid delay
- timeinterval = setInterval(update_clock, 1000);
+  clearInterval(timeinterval);
+  update_clock(); // run function once at first to avoid delay
+  timeinterval = setInterval(update_clock, 1000);
 }
 
 function time_remaining(endtime) {
-	console.log("time_remaining")
-	var t = Date.parse(endtime) - Date.parse(new Date());
-	var seconds = Math.floor((t / 1000) % 60);
-	var minutes = Math.floor((t / 1000 / 60) % 60);
-	var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-	var days = Math.floor(t / (1000 * 60 * 60 * 24));
-	return { 'total': t, 'days': days, 'hours': hours, 'minutes': minutes, 'seconds': seconds };
+  console.log("time_remaining");
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    total: t,
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds,
+  };
 }
 
 const selectNames = document.getElementById("namesSelect");
@@ -117,20 +123,20 @@ function loadSelectedChatRoom() {
 
 socket.on("showStatistics", (data) => {
   console.log("Statistics arrived");
-  console.log(data)
-  var AnswerCount ={
+  console.log(data);
+  var AnswerCount = {
     ant1: data.count1,
     ant2: data.count2,
     ant3: data.count3,
     ant4: data.count4,
-  }
+  };
 
-  var question ={
+  var question = {
     antwort1: data.ant1,
     antwort2: data.ant2,
     antwort3: data.ant3,
     antwort4: data.ant4,
-  }
+  };
   adddata(AnswerCount);
   changeLabels(question);
   showStatistics(true);
@@ -146,11 +152,10 @@ socket.on("newPhase", (message) => {
   changePhase(message);
 });
 
-
-function endTimer(){
-  var clock = document.getElementById('div_clock');
-  clearInterval(timeinterval)
-  clock.innerHTML =""
+function endTimer() {
+  var clock = document.getElementById("div_clock");
+  clearInterval(timeinterval);
+  clock.innerHTML = "";
 }
 
 socket.on("private-message", (privMessageObj) => {
@@ -179,17 +184,15 @@ messageForm.addEventListener("submit", (e) => {
       message: message,
       id: selectedRoom,
     };
-    socket.emit("Private-Message", data,(answer)=>{
-      if(answer){
-        alert("Pls dont send messages at yourself")
-      }
-      else{
+    socket.emit("Private-Message", data, (answer) => {
+      if (answer) {
+        alert("Pls dont send messages at yourself");
+      } else {
         appendMessagePrivate("You: ", message, partnerName);
         messageInput.value = "";
         $("#message-input").data("emojioneArea").setText("");
       }
     });
-
   }
 });
 
@@ -215,7 +218,6 @@ function appendMessagePrivateOthers(name, message) {
   messageContainer.append(messageElement);
 }
 
-
 function appendMessagePrivate(name, message, partnerName) {
   const messageElement = document.createElement("div");
 
@@ -236,8 +238,6 @@ function appendMessagePrivate(name, message, partnerName) {
 
   messageContainer.append(messageElement);
 }
-
-
 
 function appendMessage(name, message, position) {
   const messageElement = document.createElement("div");
