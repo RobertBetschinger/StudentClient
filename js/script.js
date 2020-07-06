@@ -141,6 +141,7 @@ socket.on("newPhase", (message) => {
   console.log("New Phase");
   if (message == "Lecteuring") {
     Fragenblock.style.visibility = "hidden";
+    showStatistics(false);
   }
   changePhase(message);
 });
